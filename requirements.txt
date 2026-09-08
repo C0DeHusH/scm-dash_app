@@ -1,0 +1,7 @@
+dash>=2.14.0
+pandas
+plotly
+openpyxl
+xlrd
+requests
+gunicorn
