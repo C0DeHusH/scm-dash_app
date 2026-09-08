@@ -246,38 +246,6 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True, external_scripts=[{
 server = app.server
 app.title = "SCM Executive Control Tower"
 
-CUSTOM_CSS = """
-:root {
-    --scm-border: rgba(148, 163, 184, 0.18);
-    --scm-muted: #94a3b8;
-}
-.metric-card, .metric-card-base {
-    position: relative; padding: 15px 17px; border: 1px solid var(--scm-border);
-    border-radius: 15px; background: rgba(148, 163, 184, 0.025);
-    box-shadow: 0 7px 20px rgba(15, 23, 42, 0.045); overflow: hidden;
-}
-.metric-card-base { display: flex; flex-direction: column; justify-content: space-between; min-height: 120px; }
-.metric-card::before, .metric-card-base::before {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-    background: #6366f1; opacity: 0.90;
-}
-.metric-title { color: var(--scm-muted); font-size: 0.67rem; font-weight: 850; text-transform: uppercase; letter-spacing: 0.075em; }
-.metric-value-sm { font-size: 1.8rem; font-weight: 900; line-height: 1.05; margin: 9px 0 6px 0; letter-spacing: -0.025em; color: white; }
-.metric-footnote { color: var(--scm-muted); font-size: 0.69rem; line-height: 1.35; }
-
-.tab-btn { padding: 10px 20px; font-weight: bold; border-radius: 8px 8px 0 0; transition: all 0.2s; }
-.tab-btn.active { background-color: rgba(99, 102, 241, 0.15); color: #a5b4fc; border-bottom: 2px solid #6366f1; }
-.tab-btn.inactive { color: #64748b; }
-.tab-btn.inactive:hover { color: #94a3b8; }
-
-.pareto-html-shell { width: 100%; border: 1px solid var(--scm-border); border-radius: 12px; overflow: hidden; }
-.pareto-html-table { width: 100%; text-align: left; border-collapse: collapse; font-size: 0.8rem; color: #e2e8f0; }
-.pareto-html-table th { padding: 8px 10px; font-size: 0.7rem; text-transform: uppercase; color: var(--scm-muted); background: rgba(148, 163, 184, 0.055); border-bottom: 1px solid var(--scm-border); }
-.pareto-html-table td { padding: 8px 10px; border-bottom: 1px solid rgba(148, 163, 184, 0.11); }
-.pareto-status { padding: 3px 7px; border-radius: 999px; border: 1px solid rgba(148, 163, 184, 0.20); font-size: 0.67rem; font-weight: 800; }
-.pareto-status.stockout { color: #f87171; background: rgba(248, 113, 113, 0.08); border-color: rgba(248, 113, 113, 0.22); }
-"""
-
 def section_heading(title, subtitle=""):
     return html.Div(className="flex items-center gap-2 mb-4 mt-6", children=[
         html.Div(className="w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_0_4px_rgba(99,102,241,0.11)]"),
@@ -289,7 +257,6 @@ def section_heading(title, subtitle=""):
 # 3. LAYOUT
 # =========================================================
 app.layout = html.Div(className="w-full max-w-none px-4 py-4 bg-[#0b1220] min-h-screen font-sans", children=[
-    html.Style(CUSTOM_CSS),
     dcc.Store(id='file-hash', data="initial"),
     
     # HERO SECTION
